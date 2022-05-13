@@ -1,0 +1,77 @@
+body {
+    font-family: Georgia, serif;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    color: #4d3f41;
+    letter-spacing: 0.05em;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    border: 0.5px solid #a2a1a4;
+    border-radius: 6px;
+    padding: 20px 20px 0 20px;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+}
+
+input::placeholder {
+    font-size: 16px;
+}
+
+.order-container {
+    width: 60%;
+    margin: auto;
+    z-index: 1;
+    /*background-color: #f5f5f5;*/
+}
+
+.delivery, .payment {
+    padding-bottom: 18px;
+}
+
+input {
+    line-height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#house, #flat{
+    width: 80px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+.fname, .lname, .street, .house{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.gift {
+    margin-bottom: 12px;
+}
+
+#fname, #lname, #street{
+    width: 80%;
+}
+
+.customer-name {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=submit] {
+    width: 100%;
+    border: 0.5px solid #a2a1a4;
+    border-radius: 6px;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    height: 34px;
+}

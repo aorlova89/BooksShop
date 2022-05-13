@@ -1,0 +1,161 @@
+body {
+    font-family: Georgia, serif;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    color: #4d3f41;
+    letter-spacing: 0.05em;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+    z-index: 1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.fa-solid{
+    font-size: 42px;
+    margin-right: 20px;
+}
+
+.fa-shopping-basket {
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-results-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-results {
+    background-color: #FFFFFF;
+}
+
+.books-list {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px 35px;
+    width: 100%;
+}
+
+.book-item {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 180px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-item:hover {
+    opacity: 0.3;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    transition: 0.3s;
+}
+
+.book-item.hover + .show-more-button {
+    display: block;
+    transition: 0.3s
+}
+
+img {
+    width: 170px;
+    height: 250px;
+    object-fit: cover;
+}
+
+button {
+    font-family: Georgia, serif;
+    border: 0.5px solid #4d3f41;
+    letter-spacing: 0.04em;
+    background-color: #4d3f41;
+    font-size: 13px;
+    outline: 0;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.show-more-button, .add-button {
+    width: 48%;
+}
+
+.book-description {
+    position: absolute;
+    padding: 3px;
+    height: 100%;
+}
+
+.blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background: rgba(0, 0, 0, .5);
+}
+
+.overlayed {
+    position: absolute;
+    opacity: 0.1;
+}
+
+.book-item-data{
+    position: relative;
+}
+
+.book-actions {
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+}
+
+.author, .price {
+    font-size: 14px;
+    margin: 7px 0;
+}
+
+.author {
+    font-style: italic;
+}
+
+h4 {
+    margin: 7px 0;
+}
+
+.cart {
+    display: none;
+    background-color: #d8d8d8;
+    width: 28%;
+}
+
+.cart-content {
+    padding: 20px;
+    font-size: 16px;
+}
+
+.confirm-button {
+    height: 32px;
+    font-size: 16px;
+    margin-top: 30px;
+}
