@@ -17,11 +17,21 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .fa-solid{
     font-size: 42px;
     margin-right: 20px;
+}
+
+img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .fa-shopping-basket {
@@ -30,6 +40,9 @@ body {
 }
 
 .top-menu {
+    position: fixed;
+    width: 70%;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,9 +55,14 @@ body {
 
 .search-results {
     background-color: #FFFFFF;
+    position: fixed;
+    width: 70%;
+    top: 80px;
+    overflow-y: scroll;
+    height: 100%;
 }
 
-.books-list {
+.books-list, .cart-items {
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
@@ -53,6 +71,7 @@ body {
 }
 
 .book-item {
+    position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 180px;
     height: 420px;
@@ -60,16 +79,18 @@ body {
     flex-direction: column;
 }
 
-.book-item:hover {
-    opacity: 0.3;
-    cursor: pointer;
-    background-color: #f5f5f5;
+.book-item.hover + .show-more-button {
+    display: block;
     transition: 0.3s;
 }
 
-.book-item.hover + .show-more-button {
-    display: block;
-    transition: 0.3s
+.cart-items .book-item{
+    height: 383px;
+}
+
+.cart-items{
+    padding-top: 0;
+
 }
 
 img {
@@ -145,17 +166,47 @@ h4 {
 
 .cart {
     display: none;
-    background-color: #d8d8d8;
-    width: 28%;
 }
 
 .cart-content {
-    padding: 20px;
     font-size: 16px;
 }
 
-.confirm-button {
+.cart-header, .cart-buttons {
+    margin-left: 30px;
+}
+
+.confirm-button, .close-cart-button {
     height: 32px;
     font-size: 16px;
-    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.close-cart-button {
+    margin-right: 30px;
+}
+button:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.fa-xmark {
+    position: absolute;
+    bottom: 0;
+    right: -12px;
+    color: #5c2a1f;
+    z-index: 9;
+}
+
+.books-list .fa-xmark {
+    display: none;
+}
+
+.fa-xmark:hover {
+    cursor: pointer;
+}
+
+.cart-total {
+    margin: 0 30px 30px;
+    font-size: 18px;
 }

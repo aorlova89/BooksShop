@@ -14,5 +14,20 @@ let createMyNode = (nodeType, className, innerText) => {
   return node;
 }
 
+function handleCartBtn() {
+  let cart = document.getElementById("cart");
+  let books = document.getElementById("books-list");
 
-export {createMyNode, createDiv};
+  if (cart.style.display === "block") {
+    cart.style.display = "none";
+    books.style.width = '100%';
+    books.style.display = 'flex';
+  } else {
+    cart.style.display = 'block';
+    cart.style.width = '100';
+    books.style.display = 'none';
+  }
+}
+
+
+export {createMyNode, createDiv, handleCartBtn};
