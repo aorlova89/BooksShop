@@ -51,70 +51,81 @@ let showError = (input, message) => {
 let form = document.forms[0];
 
 let firstName = form.elements.fname;
-firstName.onblur = function() {
-  let validator = checkName(firstName, 4);
+firstName.addEventListener('input', function(e) {
+  let validator = checkName(e.target.value, 4);
   validator.isValid ? showSuccess(firstName) : showError(firstName, validator.msg);
-}
+});
 
 let lastName = form.elements.lname;
-lastName.onblur = function () {
-  let validator = checkName(lastName, 5);
+lastName.addEventListener('input', function(e) {
+  let validator = checkName(e.target.value, 5);
   validator.isValid ? showSuccess(lastName) : showError(lastName, validator.msg);
-}
+});
 
 let street = form.elements.street;
-street.onblur = function () {
-  let validator = checkStreet(street);
+street.addEventListener('input', function (e) {
+  let validator = checkStreet(e.target.value);
   validator.isValid ? showSuccess(street) : showError(street, validator.msg);
-}
+});
 
 let house = form.elements.house;
-house.onblur = function () {
-  let validator = checkHouse(house);
+house.addEventListener('input', function (e) {
+  let validator = checkHouse(e.target.value);
   validator.isValid ? showSuccess(house) : showError(house, validator.msg);
-}
+});
 
 let flat = form.elements.flat;
-flat.onblur = function () {
-  let validator = checkFlat(flat);
+flat.addEventListener('input', function (e) {
+  let validator = checkFlat(e.target.value);
   validator.isValid ? showSuccess(flat) : showError(flat, validator.msg);
-}
+});
 
 let deliveryDate = form.delivery;
-deliveryDate.onblur = function () {
-  let validator = checkDate(deliveryDate);
+deliveryDate.addEventListener('input', function (e) {
+  let validator = checkDate(e.target.value);
   validator.isValid ? showSuccess(deliveryDate) : showError(deliveryDate, validator.msg);
-}
+});
 
-//todo
 let cashPayment = document.querySelector('#cash');
 let cardPayment = document.querySelector('#card');
-// cashPayment.onblur = function() {
-//   let validator = checkPayment(cashPayment, cardPayment) ;
-//   validator.isValid ? showSuccess(cardPayment) : showError(cardPayment, validator.msg);
-// }
 
 let selectedGifts = form.gift;
 
-checkGifts(selectedGifts);
+// checkboxlimit(selectedGifts, 2);
 
+checkGifts(selectedGifts);
+// let checkGifts = () => {
+//   let valid = false;
+//   let countOfGifts = 0;
+//   selectedGifts.forEach(gift => { if (gift.checked) countOfGifts++;});
+//   if (countOfGifts > 2) {
+//     showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
+//   } else {
+//     showSuccess(document.getElementsByClassName('gift')[3]);
+//     valid = true;
+//   }
+//
+//   return valid;
+// }
 
 
 let submitBtn = document.getElementById('submit-btn');
-form.addEventListener('input', function() {
-  if (checkName(firstName, 4).isValid
-    && checkName(lastName, 5).isValid
-    && checkStreet(street).isValid
-    && checkHouse(house).isValid
-    && checkFlat(flat).isValid
-    && checkDate(deliveryDate).isValid
+form.addEventListener('input', function(e) {
+  if (checkName(firstName.value, 4).isValid
+    && checkName(lastName.value, 5).isValid
+    && checkStreet(street.value).isValid
+    && checkHouse(house.value).isValid
+    && checkFlat(flat.value).isValid
+    && checkDate(deliveryDate.value).isValid
     && checkPayment(cashPayment, cardPayment).isValid
+    && document.querySelectorAll('input[type="checkbox"]:checked').length < 3
     // && checkGifts().isValid
+    // && checkboxlimit(selectedGifts, 2)
   ){
     submitBtn.removeAttribute('disabled');
   }
   else {
-    submitBtn.setAttribute('disabled', '')
+    submitBtn.setAttribute('disabled', '');
   }
 })
 

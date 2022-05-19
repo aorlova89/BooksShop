@@ -36,8 +36,7 @@ let isRequired = value => value !== '';
 let onlyChars = (str) => { return /^[a-zA-Z]+$/.test(str); }
 let validFlatNumber = (str) => { return /^([0-9]+-)*[0-9]+$/.test(str); }
 
-let checkName = (element, minLength) => {
-  const name = element.value.trim();
+let checkName = (name, minLength) => {
   let res = {isValid: false, msg: ''};
 
   if (!isRequired(name)) {
@@ -53,12 +52,11 @@ let checkName = (element, minLength) => {
 }
 
 let checkStreet = (street) => {
-  let streetName = street.value.trim();
   let res = {isValid: false, msg: ''};
 
-  if (!isRequired(streetName)) {
+  if (!isRequired(street.trim())) {
     res.msg = 'Field cannot be blank';
-  } else if (streetName.length < 5) {
+  } else if (street.trim().length < 5) {
     res.msg = 'Value must have at least 5 characters';
   } else {
     res.isValid = true;
@@ -69,9 +67,9 @@ let checkStreet = (street) => {
 let checkHouse = (house) => {
   let res = {isValid: false, msg: ''};
 
-  if (!isRequired(house.value)) {
+  if (!isRequired(house)) {
     res.msg = 'Field cannot be blank';
-  } else if (house.value.trim() <= 0) {
+  } else if (house.trim() <= 0) {
     res.msg = 'House should be a positive number';
   } else {
     res.isValid = true;
@@ -82,9 +80,9 @@ let checkHouse = (house) => {
 let checkFlat = (flat) => {
   let res = {isValid: false, msg: ''};
 
-  if (!isRequired(flat.value)) {
+  if (!isRequired(flat)) {
     res.msg = 'Field cannot be blank';
-  } else if (!validFlatNumber(flat.value)) {
+  } else if (!validFlatNumber(flat)) {
     res.msg = 'Flat should be a positive number, the dash symbol is allowed';
   } else {
     res.isValid = true;
@@ -97,11 +95,11 @@ let checkDate = (deliveryDate) => {
   let nextDay = new Date(today);
   nextDay.setDate(today.getDate() + 1);
   nextDay.setHours(0, 0, 0, 0);
-  let selectedDeliveryDate = new Date(deliveryDate.value);
+  let selectedDeliveryDate = new Date(deliveryDate);
 
   let res = {isValid: false, msg: ''};
 
-  if (!isRequired(deliveryDate.value)) {
+  if (!isRequired(deliveryDate)) {
     res.msg ='Field cannot be blank';
   } else if (selectedDeliveryDate < nextDay) {
     res.msg = 'Delivery Date cannot be earlier than next day';
@@ -121,20 +119,6 @@ let checkPayment = (cashPayment, cardPayment) => {
   }
   return res;
 }
-//
-// let checkGifts = () => {
-//   let valid = false;
-//   let countOfGifts = 0;
-//   selectedGifts.forEach(gift => { if (gift.checked) countOfGifts++;});
-//   if (countOfGifts > 2) {
-//     showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
-//   } else {
-//     showSuccess(document.getElementsByClassName('gift')[3]);
-//     valid = true;
-//   }
-//
-//   return valid;
-// }
 
 let checkGifts = (group) => {
   let res = {isValid: false, msg: ''};
@@ -146,13 +130,11 @@ let checkGifts = (group) => {
         checkedCount += (group[i].checked) ? 1 : 0;
 			}
 			if (checkedCount > 2) {
-        // showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
-
+        showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
         res.msg = 'You cannot choose more than 2 gifts';
-        console.log(res.msg)
 			} else {
 			  res.isValid = true;
-        // showSuccess(document.getElementsByClassName('gift')[3]);
+        showSuccess(document.getElementsByClassName('gift')[3]);
         // valid = true;
       }
 		}
