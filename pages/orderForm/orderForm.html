@@ -4,99 +4,98 @@
     <meta charset="UTF-8">
     <title>Book shop - Order</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/953da7e70f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="order-container">
-    <h1>Order Form</h1>
-    <form>
-        <fieldset class="customer-name">
-            <legend>Name</legend>
-            <div class="fname">
-                <label for="fname">First Name:</label>
-                <input type="text" id="fname" placeholder="John" required>
-            </div>
-            <div class="lname">
-                <label for="lname">Last Name:</label>
-                <input type="text" id="lname" placeholder="Doe" required>
-            </div>
-        </fieldset>
-        <fieldset class="address">
-            <legend>Delivery Address</legend>
-            <div class="street">
-                <label for="street">Street:</label>
-                <input type="text" id="street" placeholder="" required>
-            </div>
-            <div class="house">
-                <div>
-                    <label for="house">House Number:</label>
-                    <input type="number" id="house" placeholder="" required>
+<div class="container">
+    <a class="logo" href="/book-shop/pages/main">
+        <i class="fa-solid fa-book"></i><h1 class="header">Book Shop</h1>
+    </a>
+    <div class="order-container" id="order-container">
+        <h2>Order Form</h2>
+        <h5>All fields marked with * are required</h5>
+        <form name='form' id="form">
+            <fieldset class="customer-name">
+                <legend>Name</legend>
+                <div class="fname">
+                    <label for="fname">First Name *</label>
+                    <div class="field-wrapper">
+                        <input name="fname" type="text" id="fname">
+                        <small></small>
+                    </div>
                 </div>
-                <div>
-                    <label for="flat">Flat Number:</label>
-                    <input type="number" id="flat" placeholder="" required>
+                <div class="lname">
+                    <label for="lname">Last Name *</label>
+                    <div class="field-wrapper">
+                        <input type="text" id="lname">
+                        <small></small>
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset class="delivery">
-            <legend>Delivery Date</legend>
-            <input type="date" id="delivery" required/>
-        </fieldset>
-        <fieldset class="payment">
-            <legend>Payment Type</legend>
-            <input type="radio" id="cash" name="payment-type" value="Cash">
-            <label for="cash">Cash</label>
-            <input type="radio" id="card" name="payment-type" value="Card">
-            <label for="card">Card</label>
-        </fieldset>
-        <fieldset class="gifts">
-            <legend>Choose 2 gifts</legend>
-            <div class="gift">
-                <input type="checkbox" id="gift-1" name="gift-1" value="gift">
-                <label for="gift-1">Pack as gift</label>
-            </div>
-            <div class="gift">
-                <input type="checkbox" id="gift-2" name="gift-2" value="postcard">
-                <label for="gift-2">Add postcard</label>
-            </div>
-            <div class="gift">
-                <input type="checkbox" id="gift-3" name="gift-3" value="discount">
-                <label for="gift-3">Provide 2% discount to the next time</label>
-            </div>
-            <div class="gift">
-                <input type="checkbox" id="gift-4" name="gift-4" value="pen">
-                <label for="gift-4">Branded pen or pencil</label>
-            </div>
-        </fieldset>
-        <input type="submit" value="Complete">
-    </form>
-</div>
+            </fieldset>
+            <fieldset class="address">
+                <legend>Delivery Address</legend>
+                <div class="street">
+                    <label for="street">Street *</label>
+                    <div class="field-wrapper">
+                        <input type="text" id="street" placeholder="" >
+                        <small></small>
+                    </div>
+                </div>
+                <div class="house">
+                    <div>
+                        <label for="house">House Number *</label>
+                        <!--                    <div class="field-wrapper">-->
+                        <input type="number" id="house" placeholder="" >
+                        <small></small>
+                        <!--                    </div>-->
+                    </div>
+                    <div>
+                        <label for="flat">Flat Number *</label>
+                        <div class="field-wrapper">
+                            <input type="text" id="flat" placeholder="" >
+                            <small></small>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="delivery">
+                <legend>Delivery Date *</legend>
+                <input type="date" id="delivery" />
+                <small></small>
+            </fieldset>
+            <fieldset class="payment">
+                <legend>Payment Type *</legend>
+                <input type="radio" id="cash" name="payment-type" value="Cash">
+                <label for="cash">Cash</label>
+                <input type="radio" id="card" name="payment-type" value="Card">
+                <label for="card">Card</label>
+                <small></small>
+            </fieldset>
+            <fieldset class="gifts">
+                <legend>Choose 2 gifts</legend>
+                <div class="gift">
+                    <input type="checkbox" id="gift-1" name="gift" value="gift">
+                    <label for="gift-1">Pack as gift</label>
+                </div>
+                <div class="gift">
+                    <input type="checkbox" id="gift-2" name="gift" value="postcard">
+                    <label for="gift-2">Add postcard</label>
+                </div>
+                <div class="gift">
+                    <input type="checkbox" id="gift-3" name="gift" value="discount">
+                    <label for="gift-3">Provide 2% discount to the next time</label>
+                </div>
+                <div class="gift">
+                    <input type="checkbox" id="gift-4" name="gift" value="pen">
+                    <label for="gift-4">Branded pen or pencil</label>
+                </div>
+                <small></small>
+            </fieldset>
+            <input id='submit-btn' type="submit" value="Complete" disabled>
+        </form>
+    </div>
+    <p id="order-confirmation"></p>
 </div>
 </body>
+<script type="module" src="script.js"></script>
 </html>
-
-<!--//todo-->
-<!--5. form validation-->
-<!--The order form contains fields with own validation rules and Complete button +15-->
-<!-- - Name (mandatory, the length not less than 4 symbols, strings only)-->
-<!-- - Surname (mandatory, the length not less than 5 symbols, strings only)-->
-<!-- - Delivery date(mandatory, not earlier than next day)-->
-<!-- - Street (mandatory, the length not less than 5 symbols, the numbers are allowed)-->
-<!-- - House number(mandatory, numbers only, positive numbers only)-->
-<!-- - Flat number(mandatory, numbers only, positive numbers only, the dash symbol is allowed)-->
-<!-- - Choose the payment type(radio buttons group): Cash or Card (mandatory)-->
-<!-- - Choose 2 gifts: (optional)-->
-<!--    pack as a gift,-->
-<!--    add postcard,-->
-<!--    provide 2% discount to the next time,-->
-<!--    branded pen or pencil-->
-
-<!--The Complete button is disabled until the user full form with valid information +5-->
-
-<!--If user left the field empty or full of invalid data, this field became red (means red border) and -->
-<!--the validation message (The field is invalid) is appeared. After user fix data and left the field again, -->
-<!--the validation red border and message should disappear. +5-->
-
-<!--After user full all mandatory field with valid information, the Complete button become active. +10-->
-
-<!--After user click on Complete button, he will see the summarized information: for instance, The order created. -->
-<!--The delivery address is Amazing street house 3 flat 10. Customer John Gald. 5-->

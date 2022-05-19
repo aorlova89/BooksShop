@@ -48,20 +48,25 @@ img {
     align-items: center;
 }
 
-.search-results-container {
-    display: flex;
-    flex-direction: row;
-}
+/*.search-results-container {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
 
 .search-results {
     background-color: #FFFFFF;
     position: fixed;
     width: 70%;
     top: 80px;
-    overflow-y: scroll;
+    overflow-y: auto;
+/ / scroll;
     height: 100%;
+    /*    position: absolute;*/
+    /*    right: 15%;*/
+    /*    left: 15%;*/
+    /*    overflow-y: scroll;*/
+    /*}*/
 }
-
 .books-list, .cart-items {
     padding: 30px;
     display: flex;
@@ -209,4 +214,11 @@ button:disabled {
 .cart-total {
     margin: 0 30px 30px;
     font-size: 18px;
+}
+
+.items-counter {
+    font-size: 11px;
+    display: inline-block;
+    width: 14px;
+    vertical-align: text-top
 }

@@ -42,7 +42,6 @@ function handleConfirmOrderBtn() {
     confirmBtn.setAttribute('disabled', "");
   }
 
-  //navigate to orderForm
   window.location.replace("../orderForm/orderForm.html");
 }
 

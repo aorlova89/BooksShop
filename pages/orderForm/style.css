@@ -21,11 +21,17 @@ input::placeholder {
     font-size: 16px;
 }
 
-.order-container {
-    width: 60%;
+.container{
+/*.order-container, #order-confirmation {*/
+    width: 780px;
     margin: auto;
     z-index: 1;
     /*background-color: #f5f5f5;*/
+}
+
+#order-confirmation {
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 .delivery, .payment {
@@ -48,19 +54,39 @@ input {
     flex-direction: column;
 }
 
-.fname, .lname, .street, .house{
+.fname, .lname, .street{
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+}
+
+.house {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+div.house > div {
+    margin-right: 100px;
 }
 
 .gift {
     margin-bottom: 12px;
 }
 
-#fname, #lname, #street{
-    width: 80%;
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+
 }
+
+.fname .field-wrapper, .lname .field-wrapper, .street .field-wrapper {
+    width: 79%;
+}
+
+.house .field-wrapper {
+    display: inline;
+}
+
 
 .customer-name {
     display: flex;
@@ -74,4 +100,32 @@ input[type=submit] {
     font-size: 18px;
     letter-spacing: 0.06em;
     height: 34px;
+}
+
+small {
+    color: darkred;
+    display: block;
+}
+
+#order-confirmation {
+    /*display: none;*/
+}
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.fa-solid {
+    font-size: 42px;
+    /*margin-right: 20px;*/
+}
+
+a {
+    color: #4d3f41;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #4d3f41;
+    text-decoration: none;
 }

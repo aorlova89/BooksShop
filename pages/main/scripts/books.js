@@ -32,22 +32,29 @@ function handleAddBtn(id) {
   cartTotal.innerText = `You have ${itemsCount} items for a total of $${itemsTotal} in your cart`
 
   confirmOrder.removeAttribute('disabled');
-  alert(`Item ${selectedBook.title} has been added`);
+
+  let addedItemsCount = document.querySelector('.items-counter');
+  addedItemsCount.innerText ++;
+  // alert(`Item ${selectedBook.title} has been added`);
 }
 
 function handleDeleteBtn() {
   let cartHeader = document.querySelector('.cart-header');
+  let confirmOrder = document.getElementById('confirm-button');
+  let addedItemsCount = document.querySelector('.items-counter');
+
   event.target.closest('.book-item').remove();
+  addedItemsCount.innerText --;
 
   if (document.getElementById('cart-items').childElementCount === 0){
     cartHeader.innerText = 'Your cart is empty';
+    confirmOrder.setAttribute('disabled', '');
   }
 }
 
 let renderBookInfo = (book) => {
   let bookItem = createDiv("book-item");
   bookItem.id = book.id;
-
 
   let bookItemData = createDiv('book-item-data');
 
@@ -90,7 +97,6 @@ let renderBook = (book) => {
   let addBtn = createMyNode('button', 'add-button', 'Add');
   addBtn.id = book.id;
   addBtn.onclick = function() { handleAddBtn(addBtn.id); }
-
 
   bookActions.appendChild(showMoreBtn);
   bookActions.appendChild(addBtn);
@@ -150,6 +156,8 @@ let renderBooksList = () => {
   resultsBlock.appendChild(searchResultsContainer);
   searchResultsContainer.appendChild(books);
   searchResultsContainer.appendChild(renderCart());
+
+  // searchResultsContainer.appendChild(renderConfirmation());
   return resultsBlock;
 }
 

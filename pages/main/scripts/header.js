@@ -16,9 +16,8 @@ let renderTopMenu = () => {
   cartBtn.ondragover = function () {onDragOver(event) };
   cartBtn.ondrop = function () { onDrop(event) };
 
-//todo
-// let cartBadge = createMyNode('span', 'badge badge-warning', 0);
-//<span class='badge badge-warning' id='lblCartCount'> 5 </span>
+  let itemsCount = createMyNode('span', 'items-counter', '');
+  cartBtn.appendChild(itemsCount)
 
   logo.appendChild(logoIcon);
   logo.appendChild(header);
@@ -44,6 +43,5 @@ function onDrop(event) {
     .dataTransfer
     .clearData();
 }
-
 
 export {renderTopMenu};
