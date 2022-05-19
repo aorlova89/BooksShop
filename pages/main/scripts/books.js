@@ -20,16 +20,14 @@ function handleAddBtn(id) {
     renderBookInfo(selectedBook)
   );
 
-  let itemsCount = document.getElementById('cart-items').children.length;
-  let itemsPrices = document.querySelectorAll('.cart-items .price');
-  let itemsTotal = 0;
+  let itemsCount = localStorage.getItem('itemsCount');
+  localStorage.setItem('itemsCount', `${Number(itemsCount) + 1}`);
 
-  for (let i = 0; i < itemsPrices.length; i++ ) {
-    itemsTotal += Number(itemsPrices[i].innerHTML.substring(1));
-  }
+  let itemsTotalPrice = (localStorage.getItem('itemsTotalPrice'));
+  localStorage.setItem('itemsTotalPrice', `${Number(itemsTotalPrice) + Number(selectedBook.price)}`)
 
   let cartTotal = document.querySelector('.cart-total');
-  cartTotal.innerText = `You have ${itemsCount} items for a total of $${itemsTotal} in your cart`
+  cartTotal.innerText = `You have ${Number(itemsCount) + 1} items for a total of $${Number(itemsTotalPrice) + Number(selectedBook.price)} in your cart`;
 
   confirmOrder.removeAttribute('disabled');
 
@@ -41,14 +39,25 @@ function handleAddBtn(id) {
 function handleDeleteBtn() {
   let cartHeader = document.querySelector('.cart-header');
   let confirmOrder = document.getElementById('confirm-button');
-  let addedItemsCount = document.querySelector('.items-counter');
+  let cartTotal = document.querySelector('.cart-total');
+  let cartItemsIcon = document.querySelector('.items-counter');
 
+  let bookPrice = event.target.closest('.book-item').getElementsByClassName('price')[0].innerText.substring(1);
   event.target.closest('.book-item').remove();
-  addedItemsCount.innerText --;
+
+  let itemsCount = localStorage.getItem('itemsCount');
+  localStorage.setItem('itemsCount', `${Number(itemsCount) - 1}`);
+
+  let itemsTotalPrice = (localStorage.getItem('itemsTotalPrice'));
+  localStorage.setItem('itemsTotalPrice', `${Number(itemsTotalPrice) - Number(bookPrice)}`)
+
+  cartTotal.innerText = `You have ${Number(itemsCount) - 1} items for a total of $${Number(itemsTotalPrice) - Number(bookPrice)} in your cart`;
+  cartItemsIcon.innerText = Number(itemsCount) - 1;
 
   if (document.getElementById('cart-items').childElementCount === 0){
     cartHeader.innerText = 'Your cart is empty';
     confirmOrder.setAttribute('disabled', '');
+    cartItemsIcon.innerText = '';
   }
 }
 
