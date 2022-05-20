@@ -20,6 +20,11 @@ function handleAddBtn(id) {
     renderBookInfo(selectedBook)
   );
 
+  let cartBtn = document.getElementById('cart-btn');
+
+  cartBtn.classList.remove('item-added-animation');
+  setTimeout(function() {cartBtn.classList.add('item-added-animation')}, 0);
+
   let itemsCount = localStorage.getItem('itemsCount');
   localStorage.setItem('itemsCount', `${Number(itemsCount) + 1}`);
 
@@ -33,6 +38,8 @@ function handleAddBtn(id) {
 
   let addedItemsCount = document.querySelector('.items-counter');
   addedItemsCount.innerText ++;
+
+  // cartBtn.classList.remove('item-added-animation');
   // alert(`Item ${selectedBook.title} has been added`);
 }
 

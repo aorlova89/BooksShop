@@ -1,19 +1,6 @@
-// //todo
-// <!--5. form validation-->
-// <!--The order form contains fields with own validation rules and Complete button +15-->
-
-// <!--The Complete button is disabled until the user full form with valid information +5-->
-//
-// <!--If user left the field empty or full of invalid data, this field became red (means red border) and -->
-// <!--the validation message (The field is invalid) is appeared. After user fix data and left the field again, -->
-// <!--the validation red border and message should disappear. +5-->
-//
-// <!--After user full all mandatory field with valid information, the Complete button become active. +10-->
-//
-// <!--After user click on Complete button, he will see the summarized information: for instance, The order created. -->
-// <!--The delivery address is Amazing street house 3 flat 10. Customer John Gald. 5-->
-
 import {checkName, checkStreet, checkHouse, checkDate, checkPayment, checkGifts, checkFlat} from './validators.js';
+
+
 let showSuccess = (input) => {
   // get the form-field element
   const formField = input.parentElement;
@@ -91,23 +78,7 @@ let cardPayment = document.querySelector('#card');
 
 let selectedGifts = form.gift;
 
-// checkboxlimit(selectedGifts, 2);
-
 checkGifts(selectedGifts);
-// let checkGifts = () => {
-//   let valid = false;
-//   let countOfGifts = 0;
-//   selectedGifts.forEach(gift => { if (gift.checked) countOfGifts++;});
-//   if (countOfGifts > 2) {
-//     showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
-//   } else {
-//     showSuccess(document.getElementsByClassName('gift')[3]);
-//     valid = true;
-//   }
-//
-//   return valid;
-// }
-
 
 let submitBtn = document.getElementById('submit-btn');
 form.addEventListener('input', function(e) {
