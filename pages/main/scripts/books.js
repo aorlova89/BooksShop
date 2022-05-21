@@ -1,5 +1,6 @@
-import {createDiv, createMyNode} from "./utils.js";
-import {renderCart, handleConfirmOrderBtn} from "./cart.js";
+import {animateCartIcon, createDiv, createMyNode, updateLocalStorageTotal, updateCartTotal, updateQuantity}
+from "./utils.js";
+import {renderCart} from "./cart.js";
 
 
 let booksJson = await fetch("../../assets/books.json");
@@ -14,52 +15,93 @@ function handleAddBtn(id) {
 
   if (cartHeader.innerText === 'Your cart is empty') {
     cartHeader.innerText = 'Your Order:';
+    confirmOrder.removeAttribute('disabled');
   }
 
-  cartItems.appendChild(
-    renderBookInfo(selectedBook)
-  );
+  let currentCart = JSON.parse(localStorage.getItem('cart'));
 
-  let cartBtn = document.getElementById('cart-btn');
+  if (currentCart.hasOwnProperty(id)) {
+    let currentItemQuantity = document.querySelector(`.cart-item#${id} .quantity-span`);
+    currentItemQuantity.innerText = Number(currentItemQuantity.innerText) + 1;
+    document.querySelector('.decrement-quantity-span').classList.remove('disabled');
+    currentCart[id] = currentItemQuantity.innerText;
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+  } else {
+    cartItems.appendChild(renderCartItem(selectedBook, 1));
+    currentCart[id] = '1';
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+  }
 
-  cartBtn.classList.remove('item-added-animation');
-  setTimeout(function() {cartBtn.classList.add('item-added-animation')}, 0);
+  animateCartIcon(1);
 
   let itemsCount = localStorage.getItem('itemsCount');
   localStorage.setItem('itemsCount', `${Number(itemsCount) + 1}`);
 
-  let itemsTotalPrice = (localStorage.getItem('itemsTotalPrice'));
-  localStorage.setItem('itemsTotalPrice', `${Number(itemsTotalPrice) + Number(selectedBook.price)}`)
-
-  let cartTotal = document.querySelector('.cart-total');
-  cartTotal.innerText = `You have ${Number(itemsCount) + 1} items for a total of $${Number(itemsTotalPrice) + Number(selectedBook.price)} in your cart`;
-
-  confirmOrder.removeAttribute('disabled');
-
-  let addedItemsCount = document.querySelector('.items-counter');
-  addedItemsCount.innerText ++;
-
-  // cartBtn.classList.remove('item-added-animation');
-  // alert(`Item ${selectedBook.title} has been added`);
+  updateLocalStorageTotal(Number(selectedBook.price));
+  updateCartTotal(localStorage.getItem('itemsCount'), localStorage.getItem('itemsTotalPrice'));
 }
 
-function handleDeleteBtn() {
+let renderCartItem = (book, count) => {
+  let cartItem = createDiv('cart-item');
+  cartItem.setAttribute('id', book.id);
+  let cartItemInfo = createDiv('cart-item-info');
+  let checkoutInfo = createDiv('checkout-info');
+
+  let img = createMyNode('img', 'item-img', '');
+  img.src = book.imageLink;
+
+  let itemDescription = createDiv('item-description');
+  itemDescription.appendChild(createMyNode('h4', 'title', book.title));
+  itemDescription.appendChild(createMyNode('p', 'author', book.author));
+  itemDescription.appendChild(createMyNode('p', 'price', `$${book.price}`));
+
+  let quantityButtons = createDiv('quantity-buttons');
+  let decrementButton = createMyNode('span', 'decrement-quantity-span', '-');
+  decrementButton.classList.add('disabled')
+  decrementButton.onclick = function() { updateQuantity('decrement', book); };
+
+  let incrementButton = createMyNode('span', 'increment-quantity-span', '+');
+  incrementButton.onclick = function() { updateQuantity('increment', book); };
+
+  quantityButtons.appendChild(decrementButton);
+  quantityButtons.appendChild(createMyNode('span', 'quantity-span', count));
+  quantityButtons.appendChild(incrementButton)
+
+  checkoutInfo.appendChild(quantityButtons);
+
+  let removeItemButton = createMyNode('button', 'remove-item-btn', 'Remove Item');
+  removeItemButton.onclick = function() { handleDeleteBtn(book); };
+  checkoutInfo.appendChild(removeItemButton);
+
+  cartItemInfo.appendChild(img);
+  cartItemInfo.appendChild(itemDescription);
+
+  cartItem.appendChild(cartItemInfo);
+  cartItem.appendChild(checkoutInfo);
+
+  return cartItem;
+}
+
+let handleDeleteBtn = (book) => {
   let cartHeader = document.querySelector('.cart-header');
   let confirmOrder = document.getElementById('confirm-button');
-  let cartTotal = document.querySelector('.cart-total');
   let cartItemsIcon = document.querySelector('.items-counter');
 
-  let bookPrice = event.target.closest('.book-item').getElementsByClassName('price')[0].innerText.substring(1);
-  event.target.closest('.book-item').remove();
+  let selectedBook = document.querySelector(`.cart-item#${book.id}`);
+  selectedBook.remove();
+
+  let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  let selectedItemQuantity = localStorageCart[book.id];
+
+  delete localStorageCart[book.id];
+  localStorage.setItem('cart', JSON.stringify(localStorageCart));
 
   let itemsCount = localStorage.getItem('itemsCount');
-  localStorage.setItem('itemsCount', `${Number(itemsCount) - 1}`);
+  localStorage.setItem('itemsCount', `${Number(itemsCount) - Number(selectedItemQuantity)}`);
 
-  let itemsTotalPrice = (localStorage.getItem('itemsTotalPrice'));
-  localStorage.setItem('itemsTotalPrice', `${Number(itemsTotalPrice) - Number(bookPrice)}`)
-
-  cartTotal.innerText = `You have ${Number(itemsCount) - 1} items for a total of $${Number(itemsTotalPrice) - Number(bookPrice)} in your cart`;
-  cartItemsIcon.innerText = Number(itemsCount) - 1;
+  updateLocalStorageTotal(-Number(selectedItemQuantity*book.price));
+  updateCartTotal(localStorage.getItem('itemsCount'), localStorage.getItem('itemsTotalPrice'));
+  animateCartIcon(-selectedItemQuantity);
 
   if (document.getElementById('cart-items').childElementCount === 0){
     cartHeader.innerText = 'Your cart is empty';
@@ -85,7 +127,7 @@ let renderBookInfo = (book) => {
   let deleteBtn = document.createElement("i");
   deleteBtn.classList.add('fa-solid', 'fa-xmark');
   deleteBtn.setAttribute('title', "Remove from cart");
-  deleteBtn.onclick = handleDeleteBtn;
+  deleteBtn.onclick = function() { handleDeleteBtn() };
 
   bookInfo.appendChild(bookImg);
   bookInfo.appendChild(title);
@@ -163,7 +205,8 @@ let renderBooksList = () => {
   books.id = 'books-list';
 
   booksList.forEach((book, index) => {
-    book.id = `id-${index}`
+    book.id = `id-${index}`;
+    book.quantity = 0;
     books.appendChild(renderBook(book));
   });
 

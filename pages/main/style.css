@@ -26,15 +26,6 @@ body {
     margin-right: 20px;
 }
 
-img {
-    user-drag: none;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
 .fa-shopping-basket {
     font-size: 38px;
     cursor: pointer;
@@ -84,8 +75,12 @@ img {
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
+
+    /*width: 100%;*/
+}
+
+.books-list {
     gap: 35px 35px;
-    width: 100%;
 }
 
 .book-item {
@@ -111,12 +106,61 @@ img {
 
 }
 
-img {
-    width: 170px;
-    height: 250px;
-    object-fit: cover;
+.decrement-quantity-span:hover, .increment-quantity-span:hover{
+    cursor: pointer;
 }
 
+.decrement-quantity-span.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
+    margin-bottom: 15px
+}
+
+.cart-item-info {
+    display: flex;
+}
+
+.item-description {
+    margin-left: 10px;
+}
+
+img {
+    width: 180px;
+    height: 250px;
+    object-fit: cover;
+
+    -webkit-user-drag: none;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.item-img {
+    width: 125px;
+    height: 175px;
+}
+.quantity-buttons {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.quantity-span {
+    margin: 0 30px;
+}
+
+.remove-item-btn {
+    margin-top: 50px;
+    width: 95px;
+}
 button {
     font-family: Georgia, serif;
     border: 0.5px solid #4d3f41;
@@ -161,6 +205,7 @@ button:hover {
 
 .book-item-data{
     position: relative;
+    /*padding: 5px 5px 0 5px;*/
 }
 
 .book-actions {
@@ -172,6 +217,7 @@ button:hover {
 .author, .price {
     font-size: 14px;
     margin: 7px 0;
+    padding: 0 5px;
 }
 
 .author {
@@ -180,13 +226,12 @@ button:hover {
 
 h4 {
     margin: 7px 0;
+    padding: 0 5px;
 }
 
 .cart {
     display: none;
 }
-
-
 
 .cart-content {
     font-size: 16px;
@@ -203,8 +248,14 @@ h4 {
 }
 
 .close-cart-button {
-    margin-right: 30px;
+    padding: 0 16px;
+    margin-right: 35px;
 }
+
+.confirm-button{
+    padding: 0 33px;
+}
+
 button:disabled {
     cursor: default;
     opacity: 0.7;
