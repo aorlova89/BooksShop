@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 1120px;
     margin: auto;
 }
 
@@ -66,6 +66,8 @@ body {
 }
 
 .main {
+    margin: auto;
+    width: 1120px;
     background-color: #FFFFFF;
     position: absolute;
     right: 10%;

@@ -34,7 +34,6 @@ let renderCart = () => {
 }
 
 function handleConfirmOrderBtn() {
-  // let cartItems = document.getElementsByClassName('cart-items');
   let cartHeader = document.querySelector('.cart-header');
   let confirmBtn = document.getElementById('confirm-button');
 

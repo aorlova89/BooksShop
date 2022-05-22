@@ -20,7 +20,6 @@ let handleCartBtn = () => {
 
   if (cart.style.display === "block") {
     cart.style.display = "none";
-    books.style.width = '100%';
     books.style.display = 'flex';
   } else {
     cart.style.display = 'block';

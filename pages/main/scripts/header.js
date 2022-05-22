@@ -11,7 +11,6 @@ let renderTopMenu = () => {
 
     if (cart.style.display === "block") {
       cart.style.display = "none";
-      books.style.width = '100%';
       books.style.display = 'flex';
     }
   };

@@ -123,11 +123,6 @@ let renderBookInfo = (book) => {
   let title = createMyNode("h4", "title", book.title);
   let author = createMyNode('p', 'author', book.author);
   let price = createMyNode('p', "price", `$${book.price}`);
-  //
-  // let deleteBtn = document.createElement("i");
-  // deleteBtn.classList.add('fa-solid', 'fa-xmark');
-  // deleteBtn.setAttribute('title', "Remove from cart");
-  // deleteBtn.onclick = function() { handleDeleteBtn() };
 
   bookInfo.appendChild(bookImg);
   bookInfo.appendChild(title);
@@ -136,7 +131,6 @@ let renderBookInfo = (book) => {
 
   bookItemData.appendChild(bookInfo);
 
-  // bookItem.appendChild(deleteBtn);
   bookItem.appendChild(bookItemData);
 
   return bookItem;
@@ -216,7 +210,6 @@ let renderBooksList = () => {
   searchResultsContainer.appendChild(books);
   searchResultsContainer.appendChild(renderCart());
 
-  // searchResultsContainer.appendChild(renderConfirmation());
   return mainBlock;
 }
 
