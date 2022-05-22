@@ -63,8 +63,15 @@ input {
     margin-bottom: 15px;
 }
 
+.success input {
+    border-color: #ccc;
+}
+
+.error input {
+    border-color: darkred;
+}
 div.house > div {
-    margin-right: 100px;
+    margin-right: 30px;
 }
 
 .gift {
@@ -129,6 +136,10 @@ a:visited {
 
 input {
     caret-color: #4d3f41;
+}
+
+input:focus {
+    outline-width: 0;
 }
 
 .delivery-address, .customer  {

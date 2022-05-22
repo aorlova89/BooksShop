@@ -1,33 +1,21 @@
 let showSuccess = (input) => {
-  // get the form-field element
   const formField = input.parentElement;
 
-  // remove the error class
   formField.classList.remove('error');
   formField.classList.add('success');
 
-  // hide the error message
   const error = formField.querySelector('small');
   error.textContent = '';
-
-  input.style = 'border-color: #ccc'
-
-  let submitBtn = document.getElementById('submit-btn');
-  // submitBtn.removeAttribute('disabled');
 }
 
 let showError = (input, message) => {
-  // get the form-field element
   const formField = input.parentElement;
-  // add the error class
   formField.classList.remove('success');
   formField.classList.add('error');
 
-  // show the error message
   const error = formField.querySelector('small');
   error.textContent = message;
 
-  input.style = 'border-color: darkred'
   let submitBtn = document.getElementById('submit-btn');
   submitBtn.setAttribute('disabled', '');
 };
@@ -135,13 +123,10 @@ let checkGifts = (group) => {
 			} else {
 			  res.isValid = true;
         showSuccess(document.getElementsByClassName('gift')[3]);
-        // valid = true;
       }
 		}
 	}
 	return res;
 }
 
-
-
-export {checkName, checkStreet, checkHouse, checkFlat, checkDate, checkPayment, checkGifts};
+export {checkName, checkStreet, checkHouse, checkFlat, checkDate, checkPayment, checkGifts, showError, showSuccess};
