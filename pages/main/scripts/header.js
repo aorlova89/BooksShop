@@ -5,6 +5,17 @@ import {handleAddBtn} from "./books.js";
 let renderTopMenu = () => {
   let topMenu = createDiv('top-menu');
   let logo = createDiv('logo');
+  logo.onclick = function() {
+    let cart = document.getElementById("cart");
+    let books = document.getElementById("books-list");
+
+    if (cart.style.display === "block") {
+      cart.style.display = "none";
+      books.style.width = '100%';
+      books.style.display = 'flex';
+    }
+  };
+
   let logoIcon = document.createElement("i");
   logoIcon.classList.add('fa-solid', 'fa-book');
   let header = createMyNode("h1", "header", "Book Shop");

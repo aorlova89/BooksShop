@@ -94,7 +94,23 @@
             <input id='submit-btn' type="submit" value="Complete" disabled>
         </form>
     </div>
-    <p id="order-confirmation"></p>
+    <div id="order-confirmation">
+        <h3>Your order has been placed successfully</h3>
+        <div class="delivery-address">Delivery address is
+            <b id="street-confirmation"></b>,
+            house <b id="house-confirmation"></b>,
+            flat <b id="flat-confirmation"></b>
+        </div>
+        <div class="customer">Customer name:
+            <b id="name-confirmation"></b>
+            <b id="lastname-confirmation"></b>
+        </div>
+        <div class="delivery-date-confirmation">Expected Delivery Date is
+            <b id="expected-delivery-date"></b>
+        </div>
+
+        <a id="go-to-main" href="/book-shop/pages/main">Return to Main Page</a>
+    </div>
 </div>
 </body>
 <script type="module" src="script.js"></script>

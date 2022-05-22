@@ -12,5 +12,4 @@ document.body.appendChild(page);
 
 localStorage.setItem('itemsCount', '0');
 localStorage.setItem('itemsTotalPrice', '0');
-// localStorage.setItem('cart', JSON.stringify([{'id': 'id-1', 'quantity': 1}, {'id': 'id-0', 'quantity': 1}]));
 localStorage.setItem('cart', JSON.stringify({}));

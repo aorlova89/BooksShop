@@ -25,7 +25,6 @@ input::placeholder {
 .container{
     width: 780px;
     margin: auto;
-    z-index: 1;
 }
 
 #order-confirmation {
@@ -75,7 +74,6 @@ div.house > div {
 .field-wrapper {
     display: flex;
     flex-direction: column;
-
 }
 
 .fname .field-wrapper, .lname .field-wrapper, .street .field-wrapper {
@@ -85,7 +83,6 @@ div.house > div {
 .house .field-wrapper {
     display: inline;
 }
-
 
 .customer-name {
     display: flex;
@@ -107,16 +104,17 @@ small {
 }
 
 #order-confirmation {
-    /*display: none;*/
+    display: none;
 }
+
 .logo {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
+
 .fa-solid {
     font-size: 42px;
-    /*margin-right: 20px;*/
 }
 
 a {
@@ -131,4 +129,23 @@ a:visited {
 
 input {
     caret-color: #4d3f41;
+}
+
+.delivery-address, .customer  {
+    margin-bottom: 10px;
+}
+
+.delivery-date-confirmation {
+    margin-bottom: 60px;
+}
+
+#go-to-main {
+    font-family: Georgia, serif;
+    letter-spacing: 0.04em;
+    background-color: #4d3f41;
+    font-size: 20px;
+    padding: 9px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
 }

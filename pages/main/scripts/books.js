@@ -123,11 +123,11 @@ let renderBookInfo = (book) => {
   let title = createMyNode("h4", "title", book.title);
   let author = createMyNode('p', 'author', book.author);
   let price = createMyNode('p', "price", `$${book.price}`);
-
-  let deleteBtn = document.createElement("i");
-  deleteBtn.classList.add('fa-solid', 'fa-xmark');
-  deleteBtn.setAttribute('title', "Remove from cart");
-  deleteBtn.onclick = function() { handleDeleteBtn() };
+  //
+  // let deleteBtn = document.createElement("i");
+  // deleteBtn.classList.add('fa-solid', 'fa-xmark');
+  // deleteBtn.setAttribute('title', "Remove from cart");
+  // deleteBtn.onclick = function() { handleDeleteBtn() };
 
   bookInfo.appendChild(bookImg);
   bookInfo.appendChild(title);
@@ -136,7 +136,7 @@ let renderBookInfo = (book) => {
 
   bookItemData.appendChild(bookInfo);
 
-  bookItem.appendChild(deleteBtn);
+  // bookItem.appendChild(deleteBtn);
   bookItem.appendChild(bookItemData);
 
   return bookItem;
@@ -200,7 +200,7 @@ let renderBookDescription = (bookId) => {
 }
 
 let renderBooksList = () => {
-  let resultsBlock = createDiv("search-results");
+  let mainBlock = createDiv("main");
   let books = createDiv("books-list");
   books.id = 'books-list';
 
@@ -212,12 +212,12 @@ let renderBooksList = () => {
 
   let searchResultsContainer = createDiv('search-results-container');
 
-  resultsBlock.appendChild(searchResultsContainer);
+  mainBlock.appendChild(searchResultsContainer);
   searchResultsContainer.appendChild(books);
   searchResultsContainer.appendChild(renderCart());
 
   // searchResultsContainer.appendChild(renderConfirmation());
-  return resultsBlock;
+  return mainBlock;
 }
 
 function onDragStart(event) {

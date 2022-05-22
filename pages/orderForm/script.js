@@ -90,8 +90,6 @@ form.addEventListener('input', function(e) {
     && checkDate(deliveryDate.value).isValid
     && checkPayment(cashPayment, cardPayment).isValid
     && document.querySelectorAll('input[type="checkbox"]:checked').length < 3
-    // && checkGifts().isValid
-    // && checkboxlimit(selectedGifts, 2)
   ){
     submitBtn.removeAttribute('disabled');
   }
@@ -102,10 +100,27 @@ form.addEventListener('input', function(e) {
 
 form.addEventListener('submit', function (e) {
   let confirmationDiv = document.getElementById('order-confirmation');
-  let info = `The order has been created. Delivery address is ${street.value} street house ${house.value} flat ${flat.value}. Customer name: ${firstName.value} ${lastName.value}`;
+  let streetConfirmation = document.getElementById('street-confirmation');
+  streetConfirmation.innerText = street.value;
+
+  let houseConfirmation = document.getElementById('house-confirmation');
+  houseConfirmation.innerText = house.value;
+
+  let flatConfirmation = document.getElementById('flat-confirmation');
+  flatConfirmation.innerText = flat.value;
+
+  let firstNameConfirmation = document.getElementById('name-confirmation');
+  firstNameConfirmation.innerText = firstName.value;
+
+  let lastNameConfirmation = document.getElementById('lastname-confirmation');
+  lastNameConfirmation.innerText = lastName.value;
+
+  let deliveryDateConfirmation = document.getElementById('expected-delivery-date');
+  deliveryDateConfirmation.innerText = deliveryDate.value;
+
   confirmationDiv.style.display = 'block';
-  confirmationDiv.innerText = info;
   document.getElementById('order-container').style.display = 'none';
+
   e.preventDefault();
 });
 

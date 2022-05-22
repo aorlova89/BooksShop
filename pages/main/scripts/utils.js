@@ -14,7 +14,7 @@ let createMyNode = (nodeType, className, innerText) => {
   return node;
 }
 
-function handleCartBtn() {
+let handleCartBtn = () => {
   let cart = document.getElementById("cart");
   let books = document.getElementById("books-list");
 
@@ -84,6 +84,5 @@ let updateQuantity = (action, item) => {
     }
   }
 }
-
 
 export {createMyNode, createDiv, handleCartBtn, animateCartIcon, updateLocalStorageCart, updateLocalStorageTotal, updateCartTotal, updateQuantity};
