@@ -23,6 +23,7 @@ let showError = (input, message) => {
 let isRequired = value => value !== '';
 let onlyChars = (str) => { return /^[a-zA-Z]+$/.test(str); }
 let validFlatNumber = (str) => { return /^([0-9]+-)*[0-9]+$/.test(str); }
+let validStreet = (str) => { return /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(str); }
 
 let checkName = (name, minLength) => {
   let res = {isValid: false, msg: ''};
@@ -45,8 +46,10 @@ let checkStreet = (street) => {
   if (!isRequired(street.trim())) {
     res.msg = 'Field cannot be blank';
   } else if (street.trim().length < 5) {
-    res.msg = 'Value must have at least 5 characters';
-  } else {
+    res.msg = 'Value should have at least 5 characters';
+  } else if (!validStreet(street)) {
+    res.msg = "Value shouldn't have multiple spaces in a row";
+  }  else {
     res.isValid = true;
   }
   return res;
@@ -111,22 +114,22 @@ let checkPayment = (cashPayment, cardPayment) => {
 let checkGifts = (group) => {
   let res = {isValid: false, msg: ''};
 
-	for (let i = 0; i < group.length; i++) {
-		group[i].onclick = function() {
-			let checkedCount = 0;
-			for (let i = 0; i < group.length; i++) {
+  for (let i = 0; i < group.length; i++) {
+    group[i].onclick = function() {
+      let checkedCount = 0;
+      for (let i = 0; i < group.length; i++) {
         checkedCount += (group[i].checked) ? 1 : 0;
-			}
-			if (checkedCount > 2) {
+      }
+      if (checkedCount > 2) {
         showError(document.getElementsByClassName('gift')[3], 'You cannot choose more than 2 gifts');
         res.msg = 'You cannot choose more than 2 gifts';
-			} else {
-			  res.isValid = true;
+      } else {
+        res.isValid = true;
         showSuccess(document.getElementsByClassName('gift')[3]);
       }
-		}
-	}
-	return res;
+    }
+  }
+  return res;
 }
 
 export {checkName, checkStreet, checkHouse, checkFlat, checkDate, checkPayment, checkGifts, showError, showSuccess};
