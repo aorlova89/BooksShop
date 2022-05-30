@@ -118,6 +118,7 @@ let renderBookInfo = (book) => {
 
   let bookImg = document.createElement('img');
   bookImg.src = book.imageLink;
+  bookImg.setAttribute('draggable', "false");
 
   let bookInfo = createDiv("book-info");
   let title = createMyNode("h4", "title", book.title);
@@ -216,7 +217,7 @@ let renderBooksList = () => {
 function onDragStart(event) {
   event
     .dataTransfer
-    .setData('text/plain', event.target.id);
+    .setData('text', event.target.id);
 }
 
 export {renderBooksList, handleAddBtn};

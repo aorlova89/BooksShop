@@ -43,15 +43,12 @@ function onDragOver(event) {
 }
 
 function onDrop(event) {
+  event.preventDefault();
   const id = event
     .dataTransfer
     .getData('text');
 
   handleAddBtn(id);
-
-  event
-    .dataTransfer
-    .clearData();
 }
 
 export {renderTopMenu};
